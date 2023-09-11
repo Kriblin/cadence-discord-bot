@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.3.4](https://github.com/mariusbegby/cadence-discord-bot/compare/v5.3.3...v5.3.4) (2023-09-11)
+
+
+### Miscellaneous
+
+* **deps:** bump mediaplex from 0.0.6 to 0.0.7 ([a79cb44](https://github.com/mariusbegby/cadence-discord-bot/commit/a79cb4467d3c02ad50229ba495b8cb83cbeabe0d))
+
 ## [5.3.3](https://github.com/mariusbegby/cadence-discord-bot/compare/v5.3.2...v5.3.3) (2023-09-10)
 
 
