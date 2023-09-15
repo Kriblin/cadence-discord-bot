@@ -1,5 +1,4 @@
-import config from 'config';
-import { GuildQueue, PlayerTimestamp, Track, useQueue } from 'discord-player';
+import { GuildQueue, Track, useQueue } from 'discord-player';
 import {
     APIActionRowComponent,
     APIButtonComponent,
@@ -12,12 +11,9 @@ import {
     SlashCommandBuilder
 } from 'discord.js';
 import { BaseSlashCommandInteraction } from '../../../classes/interactions';
-import { PlayerOptions } from '../../../types/configTypes';
 import { BaseSlashCommandParams, BaseSlashCommandReturnType, TrackMetadata } from '../../../types/interactionTypes';
 import { checkQueueCurrentTrack, checkQueueExists } from '../../../utils/validation/queueValidator';
 import { checkInVoiceChannel, checkSameVoiceChannel } from '../../../utils/validation/voiceChannelValidator';
-
-const playerOptions: PlayerOptions = config.get('playerOptions');
 
 class NowPlayingCommand extends BaseSlashCommandInteraction {
     constructor() {
@@ -46,7 +42,7 @@ class NowPlayingCommand extends BaseSlashCommandInteraction {
         const displayTrackRequestedBy: string = this.getDisplayTrackRequestedBy(currentTrack);
         const displayTrackPlayingStatus: string = this.getDisplayTrackPlayingStatus(queue);
         const displayQueueRepeatMode: string = this.getDisplayQueueRepeatMode(queue);
-        const displayEmbedProgressBar: string = await this.getDisplayQueueProgressBar(queue);
+        const displayEmbedProgressBar: string = this.getDisplayQueueProgressBar(queue);
 
         const customId: string = `nowplaying-skip-button_${currentTrack.id}`;
         logger.debug(`Generated custom id for skip button: ${customId}`);
@@ -67,11 +63,11 @@ class NowPlayingCommand extends BaseSlashCommandInteraction {
         return await interaction.editReply({
             embeds: [
                 new EmbedBuilder()
-                    .setAuthor(await this.getEmbedQueueAuthor(interaction, queue))
+                    .setAuthor(this.getEmbedQueueAuthor(interaction, queue))
                     .setDescription(
                         `${displayTrackPlayingStatus}\n` +
                             `${displayTrackUrl}\n` +
-                            `${displayTrackRequestedBy}\n` +
+                            `**Requested by:** ${displayTrackRequestedBy}\n` +
                             `${displayEmbedProgressBar}\n\n ` +
                             `${displayQueueRepeatMode}\n\n`
                     )
@@ -105,28 +101,6 @@ class NowPlayingCommand extends BaseSlashCommandInteraction {
             author = 'Unavailable';
         }
         return author;
-    }
-
-    private async getDisplayQueueProgressBar(queue: GuildQueue): Promise<string> {
-        const timestamp: PlayerTimestamp = queue.node.getTimestamp()!;
-        let progressBar: string = `**\`${timestamp.current.label}\`** ${queue.node.createProgressBar({
-            queue: false,
-            length: playerOptions.progressBar.length ?? 12,
-            timecodes: playerOptions.progressBar.timecodes ?? false,
-            indicator: playerOptions.progressBar.indicator ?? '🔘',
-            leftChar: playerOptions.progressBar.leftChar ?? '▬',
-            rightChar: playerOptions.progressBar.rightChar ?? '▬'
-        })} **\`${timestamp.total.label}\`**`;
-
-        if (Number(queue.currentTrack?.raw.duration) === 0 || queue.currentTrack?.duration === '0:00') {
-            progressBar = '_No duration available._';
-        }
-
-        if (queue.currentTrack?.raw.live) {
-            progressBar = `${this.embedOptions.icons.liveTrack} **\`LIVE\`** - Playing continuously from live source.`;
-        }
-
-        return progressBar;
     }
 
     private getTrackSourceString(currentTrack: Track): string {
@@ -179,17 +153,16 @@ class NowPlayingCommand extends BaseSlashCommandInteraction {
 
         const loopModeUserString: string = this.getRepeatModeString(repeatMode);
         const icon = repeatMode === 3 ? this.embedOptions.icons.autoplay : this.embedOptions.icons.loop;
-        return `**${icon} Looping**\nLoop mode is set to **\`${loopModeUserString}\`**. You can change it with **\`/loop\`**.`;
+        return (
+            `**${icon} Looping**\n` +
+            `Loop mode is set to **\`${loopModeUserString}\`**. You can change it with **\`/loop\`**.`
+        );
     };
 
     private getDisplayTrackPlayingStatus = (queue: GuildQueue): string => {
         return queue.node.isPaused()
             ? '**Currently Paused**'
             : `**${this.embedOptions.icons.audioPlaying} Now Playing**`;
-    };
-
-    private getDisplayTrackRequestedBy = (currentTrack: Track): string => {
-        return currentTrack.requestedBy ? `<@${currentTrack.requestedBy.id}>` : 'Unavailable';
     };
 
     private getEmbedFields = (currentTrack: Track): EmbedField[] => {

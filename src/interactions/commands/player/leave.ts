@@ -26,22 +26,24 @@ class LeaveCommand extends BaseSlashCommandInteraction {
         ]);
 
         logger.debug('Deleting queue.');
-        await this.deleteQueue(queue);
+        this.deleteQueue(queue);
 
         logger.debug('Responding with success embed.');
         return await interaction.editReply({
             embeds: [
                 new EmbedBuilder()
-                    .setAuthor(await this.getEmbedUserAuthor(interaction))
+                    .setAuthor(this.getEmbedUserAuthor(interaction))
                     .setDescription(
-                        `**${this.embedOptions.icons.success} Leaving channel**\nCleared the track queue and left voice channel.\n\nTo play more music, use the **\`/play\`** command!`
+                        `**${this.embedOptions.icons.success} Leaving channel**\n` +
+                            'Cleared the track queue and left voice channel.\n\n' +
+                            'To play more music, use the **`/play`** command!'
                     )
                     .setColor(this.embedOptions.colors.success)
             ]
         });
     }
 
-    private async deleteQueue(queue: GuildQueue): Promise<void> {
+    private deleteQueue(queue: GuildQueue): void {
         if (!queue.deleted) {
             queue.delete();
         }

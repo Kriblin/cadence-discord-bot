@@ -74,7 +74,8 @@ class LoopCommand extends BaseSlashCommandInteraction {
             embeds: [
                 new EmbedBuilder()
                     .setDescription(
-                        `**${repeatModeEmbedIcon} Current loop mode**\nThe looping mode is currently set to **\`${repeatModeEmbedName}\`**.`
+                        `**${repeatModeEmbedIcon} Current loop mode**\n` +
+                            `The looping mode is currently set to **\`${repeatModeEmbedName}\`**.`
                     )
                     .setColor(this.embedOptions.colors.info)
             ]
@@ -93,7 +94,8 @@ class LoopCommand extends BaseSlashCommandInteraction {
             embeds: [
                 new EmbedBuilder()
                     .setDescription(
-                        `**${this.embedOptions.icons.warning} Oops!**\nLoop mode is already **\`${repeatModeEmbedName}\`**.`
+                        `**${this.embedOptions.icons.warning} Oops!**\n` +
+                            `Loop mode is already **\`${repeatModeEmbedName}\`**.`
                     )
                     .setColor(this.embedOptions.colors.warning)
             ]
@@ -117,7 +119,7 @@ class LoopCommand extends BaseSlashCommandInteraction {
         return await interaction.editReply({
             embeds: [
                 new EmbedBuilder()
-                    .setAuthor(await this.getEmbedUserAuthor(interaction))
+                    .setAuthor(this.getEmbedUserAuthor(interaction))
                     .setDescription(getChangedRepeatModeEmbedReply)
                     .setColor(this.embedOptions.colors.success)
             ]

@@ -1,6 +1,6 @@
 import { LyricsData, lyricsExtractor } from '@discord-player/extractor';
 import { GuildQueue, Player, QueryType, SearchResult, Track, useMainPlayer, useQueue } from 'discord-player';
-import { ChatInputCommandInteraction, EmbedBuilder, SlashCommandBuilder } from 'discord.js';
+import { ChatInputCommandInteraction, EmbedBuilder, Message, SlashCommandBuilder } from 'discord.js';
 import { Logger } from 'pino';
 import { BaseSlashCommandInteraction } from '../../../classes/interactions';
 import { BaseSlashCommandParams, BaseSlashCommandReturnType } from '../../../types/interactionTypes';
@@ -61,7 +61,7 @@ class LyricsCommand extends BaseSlashCommandInteraction {
             return await this.sendMultipleLyricsMessages(logger, interaction, finalLyricsData);
         }
 
-        return await this.sendLyricsEmbed(finalLyricsData, interaction, logger);
+        return await this.sendLyricsEmbed(logger, interaction, finalLyricsData);
     }
 
     private getGeniusSearchQuery(logger: Logger, query: string, queue: GuildQueue): string {
@@ -166,7 +166,8 @@ class LyricsCommand extends BaseSlashCommandInteraction {
             embeds: [
                 new EmbedBuilder()
                     .setDescription(
-                        `**${this.embedOptions.icons.warning} No lyrics found**\nThere was no Genius lyrics found for track **${geniusSearchQuery}**.`
+                        `**${this.embedOptions.icons.warning} No lyrics found**\n` +
+                            `There was no Genius lyrics found for track **${geniusSearchQuery}**.`
                     )
                     .setColor(this.embedOptions.colors.warning)
             ]
@@ -177,14 +178,16 @@ class LyricsCommand extends BaseSlashCommandInteraction {
         logger: Logger,
         interaction: ChatInputCommandInteraction,
         geniusLyricsResult: LyricsData
-    ) {
+    ): Promise<Message> {
         logger.debug('Lyrics text too long, splitting into multiple messages.');
         const messageCount: number = Math.ceil(geniusLyricsResult.lyrics.length / 3800);
         const embedList: EmbedBuilder[] = [];
         embedList.push(
             new EmbedBuilder()
                 .setDescription(
-                    `**${this.embedOptions.icons.queue} Showing lyrics**\n**Track: [${geniusLyricsResult.title}](${geniusLyricsResult.url})**\n**Artist: [${geniusLyricsResult.artist.name}](${geniusLyricsResult.artist.url})**\n\n`
+                    `**${this.embedOptions.icons.queue} Showing lyrics**\n` +
+                        `**Track: [${geniusLyricsResult.title}](${geniusLyricsResult.url})**\n` +
+                        `**Artist: [${geniusLyricsResult.artist.name}](${geniusLyricsResult.artist.url})**\n\n`
                 )
                 .setColor(this.embedOptions.colors.info)
         );
@@ -197,22 +200,25 @@ class LyricsCommand extends BaseSlashCommandInteraction {
         }
 
         logger.debug('Responding with multiple info embeds.');
-        await interaction.editReply({
+        return await interaction.editReply({
             embeds: embedList
         });
     }
 
     private async sendLyricsEmbed(
-        geniusLyricsResult: LyricsData,
+        logger: Logger,
         interaction: ChatInputCommandInteraction,
-        logger: Logger
-    ) {
+        geniusLyricsResult: LyricsData
+    ): Promise<Message> {
         logger.debug('Responding with info embed.');
         return await interaction.editReply({
             embeds: [
                 new EmbedBuilder()
                     .setDescription(
-                        `**${this.embedOptions.icons.queue} Showing lyrics**\n**Track: [${geniusLyricsResult.title}](${geniusLyricsResult.url})**\n**Artist: [${geniusLyricsResult.artist.name}](${geniusLyricsResult.artist.url})**\n\n\`\`\`fix\n${geniusLyricsResult.lyrics}\`\`\``
+                        `**${this.embedOptions.icons.queue} Showing lyrics**\n` +
+                            `**Track: [${geniusLyricsResult.title}](${geniusLyricsResult.url})**\n` +
+                            `**Artist: [${geniusLyricsResult.artist.name}](${geniusLyricsResult.artist.url})**\n\n` +
+                            `\`\`\`fix\n${geniusLyricsResult.lyrics}\`\`\``
                     )
                     .setColor(this.embedOptions.colors.info)
             ]

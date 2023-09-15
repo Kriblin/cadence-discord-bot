@@ -2,7 +2,7 @@ import { Logger } from 'pino';
 import loggerModule from '../../services/logger';
 import { GetUptimeFormattedParams } from '../../types/utilTypes';
 
-export const getUptimeFormatted = async ({ executionId }: GetUptimeFormattedParams) => {
+export const getUptimeFormatted = ({ executionId }: GetUptimeFormattedParams): string => {
     const logger: Logger = loggerModule.child({
         module: 'utilSystem',
         name: 'getUptimeFormatted',
@@ -10,12 +10,10 @@ export const getUptimeFormatted = async ({ executionId }: GetUptimeFormattedPara
     });
 
     try {
-        let uptimeFormattedString: string = '';
-
         const uptimeInSeconds: number = parseFloat(process.uptime().toFixed(0));
         const uptimeDate: Date = new Date(0);
         uptimeDate.setSeconds(uptimeInSeconds);
-        uptimeFormattedString = `${
+        const uptimeFormattedString: string = `${
             uptimeDate.getUTCDate() - 1
         }d ${uptimeDate.getUTCHours()}h ${uptimeDate.getUTCMinutes()}m ${uptimeDate.getUTCSeconds()}s`;
 

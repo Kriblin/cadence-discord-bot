@@ -33,9 +33,11 @@ class ShuffleCommand extends BaseSlashCommandInteraction {
         return await interaction.editReply({
             embeds: [
                 new EmbedBuilder()
-                    .setAuthor(await this.getEmbedUserAuthor(interaction))
+                    .setAuthor(this.getEmbedUserAuthor(interaction))
                     .setDescription(
-                        `**${this.embedOptions.icons.shuffled} Shuffled queue tracks**\nThe **${queue.tracks.data.length}** tracks in the queue has been shuffled.\n\nView the new queue order with **\`/queue\`**.`
+                        `**${this.embedOptions.icons.shuffled} Shuffled queue tracks**\n` +
+                            `The **${queue.tracks.data.length}** tracks in the queue has been shuffled.\n\n` +
+                            'View the new queue order with **`/queue`**.'
                     )
                     .setColor(this.embedOptions.colors.success)
             ]

@@ -1,5 +1,70 @@
 # Changelog
 
+## [5.3.8](https://github.com/mariusbegby/cadence-discord-bot/compare/v5.3.7...v5.3.8) (2023-09-14)
+
+
+### Minor changes and bug fixes
+
+* remove incorrect ** from string ([cf45bde](https://github.com/mariusbegby/cadence-discord-bot/commit/cf45bde80b42e69e7a8e797905502b261e86e269))
+* update getDisplayRepeatMode showing wrong icon on success ([ea8cf10](https://github.com/mariusbegby/cadence-discord-bot/commit/ea8cf100f5fb98b57fd19e1bd4ec40712968add5))
+
+## [5.3.7](https://github.com/mariusbegby/cadence-discord-bot/compare/v5.3.6...v5.3.7) (2023-09-14)
+
+
+### Minor changes and bug fixes
+
+* Added setup for unit tests ([f04d5ab](https://github.com/mariusbegby/cadence-discord-bot/commit/f04d5ab79b360ba1f66cb2913ef1d24f08896ca2))
+* change map to switch statement ([7018b69](https://github.com/mariusbegby/cadence-discord-bot/commit/7018b690bbc591b1b1eb689dfb4b36ab199165f3))
+* Fix posting bot stats status codes. ([6beb29d](https://github.com/mariusbegby/cadence-discord-bot/commit/6beb29d8b75bcf3efd7e4237dc5b604e4d65eb00))
+* possibly solve duplicate event 'interactionCreate' listener bug ([2d08a9a](https://github.com/mariusbegby/cadence-discord-bot/commit/2d08a9aa858fcd7f82c02fe0f0dc9b6e4524421c))
+* refactor postBotStats.ts ([f06f2ae](https://github.com/mariusbegby/cadence-discord-bot/commit/f06f2ae352c72844317b519a46650807bddc3eb2))
+* remove async from getUptimeFormatted ([4041404](https://github.com/mariusbegby/cadence-discord-bot/commit/4041404f01e58fd88009d73950691f2a5cbd3e1f))
+* small change to getEmbedQueueAuthor for bitrate calculation ([f3de02a](https://github.com/mariusbegby/cadence-discord-bot/commit/f3de02a6a8f4fc8cfe3e80a8b49117d076b5a9f5))
+* update interactionCreate event handling ([7902a84](https://github.com/mariusbegby/cadence-discord-bot/commit/7902a8427c5516c0586a86f27c2646cad1d81151))
+* use Promise.all when fetching info for status commands ([2d7ffc1](https://github.com/mariusbegby/cadence-discord-bot/commit/2d7ffc1a3ff9f58740dd1c77078feadcce6478d7))
+
+
+### Miscellaneous
+
+* adjust getUptimeFormatted method ([5558c0b](https://github.com/mariusbegby/cadence-discord-bot/commit/5558c0bca2ec2241a2899e5e1c00a1a6090c0fce))
+* more type annotations ([10c03d5](https://github.com/mariusbegby/cadence-discord-bot/commit/10c03d599f9eb060304b10e5e5b6572c7ab253b0))
+
+## [5.3.6](https://github.com/mariusbegby/cadence-discord-bot/compare/v5.3.5...v5.3.6) (2023-09-13)
+
+
+### Minor changes and bug fixes
+
+* add requested by string before mention ([e3efa48](https://github.com/mariusbegby/cadence-discord-bot/commit/e3efa48ade580db411246b85afcd57bf7a516dff))
+* fix duration validation not using padded and formatted duration ([c4f9403](https://github.com/mariusbegby/cadence-discord-bot/commit/c4f9403ecffdefff892085bedd32c4d8da4c02d3))
+* refactor filters disable button ([9458ed6](https://github.com/mariusbegby/cadence-discord-bot/commit/9458ed60a1c4eaf654bc32e9eb26bb719c0cf60b))
+* refactor guilds command ([c689452](https://github.com/mariusbegby/cadence-discord-bot/commit/c68945272e6b26654d1baa173d9087cba994b0ff))
+* refactor remove command ([230ba5f](https://github.com/mariusbegby/cadence-discord-bot/commit/230ba5fd9388ca67fa25720671706853e0a72aad))
+* refactor volume command ([fca1a90](https://github.com/mariusbegby/cadence-discord-bot/commit/fca1a9048986d56136994824b949545e68933abf))
+* refactored autocomplete interactions ([af78759](https://github.com/mariusbegby/cadence-discord-bot/commit/af7875981364fc01cc96d8d2c3624f3ac70dd2f9))
+* refactored filters select menu component ([a9ce285](https://github.com/mariusbegby/cadence-discord-bot/commit/a9ce2856502aeb6b27dfeefe3c5e43b5c2e0454b))
+* refactored guilds command ([56b25f9](https://github.com/mariusbegby/cadence-discord-bot/commit/56b25f9b97addc13ffb233ef45642dca6c990ae3))
+* refactored nowplaying skip button component + more common methods ([78e8f12](https://github.com/mariusbegby/cadence-discord-bot/commit/78e8f12c99f9f3650d013bb92c7a20177f59b636))
+* refactored seek command ([c871a75](https://github.com/mariusbegby/cadence-discord-bot/commit/c871a758222cc99ce7e50eae916a9d79f4c5bd33))
+* refactored shards command ([9259bc2](https://github.com/mariusbegby/cadence-discord-bot/commit/9259bc2ffa8f9e4c72fd8baac5c203ec07f6f8b4))
+* refactored skip command ([90346e7](https://github.com/mariusbegby/cadence-discord-bot/commit/90346e74698864b999bfebd29df3d10fbfab646b))
+* refactored status commands ([20bc4aa](https://github.com/mariusbegby/cadence-discord-bot/commit/20bc4aa88f624719fe296092378e23fba94b1193))
+* remove async from class methods for getting author ([fe14fc3](https://github.com/mariusbegby/cadence-discord-bot/commit/fe14fc308fe1d85f04f528a649034043dfda21c8))
+
+
+### Miscellaneous
+
+* formatting strings to multiple lines ([e57dcaf](https://github.com/mariusbegby/cadence-discord-bot/commit/e57dcaf399affd40d3ef28717a3b52b8ea6bc9df))
+
+## [5.3.5](https://github.com/mariusbegby/cadence-discord-bot/compare/v5.3.4...v5.3.5) (2023-09-12)
+
+
+### Minor changes and bug fixes
+
+* increased default history size ([85e27af](https://github.com/mariusbegby/cadence-discord-bot/commit/85e27afc5c53d70f78388337bdb60e965a8b633a))
+* refactored pause command, added common method getDisplayTrackDurationAndUrl() ([0850d9b](https://github.com/mariusbegby/cadence-discord-bot/commit/0850d9b26d459dd8d9b6c81ec58cb47060b304f2))
+* refactored play command and added common method for getting thumbnail url ([bf30d56](https://github.com/mariusbegby/cadence-discord-bot/commit/bf30d565d7ad311a7daea5900fbe3d6bf1d7c008))
+* refactored queue command, added more common methods ([1ebb7c3](https://github.com/mariusbegby/cadence-discord-bot/commit/1ebb7c3b8951f2aca3f943e601b2fff127083fff))
+
 ## [5.3.4](https://github.com/mariusbegby/cadence-discord-bot/compare/v5.3.3...v5.3.4) (2023-09-11)
 
 
