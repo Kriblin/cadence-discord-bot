@@ -1,4 +1,4 @@
-import { Player, SearchResult, useMainPlayer } from 'discord-player';
+import { Player, QueryType, useMainPlayer } from 'discord-player';
 import { ApplicationCommandOptionChoiceData } from 'discord.js';
 import { BaseAutocompleteInteraction } from '../../classes/interactions';
 import { BaseAutocompleteParams, BaseAutocompleteReturnType } from '../../types/interactionTypes';
@@ -29,11 +29,14 @@ class PlayAutocomplete extends BaseAutocompleteInteraction {
             logger.debug(`Responding with empty results due to < 3 length for query '${query}'`);
             return interaction.respond([]);
         }
-        const searchResults: SearchResult = await player.search(query);
 
+        const urlPattern = new RegExp('(?:https?)://(w+:?w*)?(S+)(:d+)?(/|/([w#!:.?+=&%!-/]))?');
+        const searchResults = await player.search(query, {
+            searchEngine: urlPattern.test(query) ? QueryType.YOUTUBE_VIDEO : QueryType.YOUTUBE
+        });
         let response: ApplicationCommandOptionChoiceData<string>[] = [];
 
-        response = searchResults.tracks.slice(0, 5).map((track) => {
+        response = searchResults.tracks.slice(0, 7).map((track) => {
             if (track.url.length > 100) {
                 track.url = track.title.slice(0, 100);
             }

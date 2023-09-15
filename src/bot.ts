@@ -33,7 +33,7 @@ const logger: Logger = loggerModule.child({
             client.emit('ready', client as Client);
         });
 
-        client.login(process.env.DISCORD_BOT_TOKEN);
+        await client.login(process.env.DISCORD_BOT_TOKEN);
     } catch (error) {
         logger.error(error);
     }
