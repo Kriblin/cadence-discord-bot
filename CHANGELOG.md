@@ -1,5 +1,54 @@
 # Changelog
 
+## [5.6.0](https://github.com/mariusbegby/cadence-discord-bot/compare/v5.5.0...v5.6.0) (2023-09-18)
+
+
+### Features
+
+* add /join command ([9901374](https://github.com/mariusbegby/cadence-discord-bot/commit/990137468e7ce1302b22ac5f5b935a551812814d))
+
+
+### Miscellaneous
+
+* **deps-dev:** bump @types/jest from 29.5.4 to 29.5.5 ([c689589](https://github.com/mariusbegby/cadence-discord-bot/commit/c689589b495ebb56c20c58c0f1dd2de4e4671ae1))
+* **deps-dev:** bump @types/node from 20.6.0 to 20.6.2 ([97869a0](https://github.com/mariusbegby/cadence-discord-bot/commit/97869a04fdb21a2afd98dac656ca677d06d26368))
+* **deps-dev:** bump @typescript-eslint/eslint-plugin ([dfa4393](https://github.com/mariusbegby/cadence-discord-bot/commit/dfa439368364b6a11169ac87fb54d2b681c68d61))
+* **deps-dev:** bump @typescript-eslint/parser from 6.6.0 to 6.7.0 ([2e9dd22](https://github.com/mariusbegby/cadence-discord-bot/commit/2e9dd229da4d696f630d0f20ba628e41aec55ac3))
+* **deps:** bump mediaplex from 0.0.7 to 0.0.8 ([e348fc3](https://github.com/mariusbegby/cadence-discord-bot/commit/e348fc368669a30bb66ef666d72318f83b72e374))
+
+## [5.5.0](https://github.com/mariusbegby/cadence-discord-bot/compare/v5.4.1...v5.5.0) (2023-09-17)
+
+
+### Features
+
+* added equalizer filters to /filters command ([9584fe8](https://github.com/mariusbegby/cadence-discord-bot/commit/9584fe8ebe7b1cb97200d7a13e8763b1f4babba2))
+
+## [5.4.1](https://github.com/mariusbegby/cadence-discord-bot/compare/v5.4.0...v5.4.1) (2023-09-16)
+
+
+### Minor changes and bug fixes
+
+* update deps ([e029314](https://github.com/mariusbegby/cadence-discord-bot/commit/e029314ee2e125a90db2756b20e116a7b8fa45f5))
+
+
+### Miscellaneous
+
+* add jest coverage npm script ([b73dee5](https://github.com/mariusbegby/cadence-discord-bot/commit/b73dee52adaf348cc0106527a7987b25908e0c47))
+* created simple command class method unit test ([aa37704](https://github.com/mariusbegby/cadence-discord-bot/commit/aa37704331e529248b612a803f94feb92505329f))
+
+## [5.4.0](https://github.com/mariusbegby/cadence-discord-bot/compare/v5.3.8...v5.4.0) (2023-09-16)
+
+
+### Features
+
+* add biquad filters support ([0b94a9b](https://github.com/mariusbegby/cadence-discord-bot/commit/0b94a9b5ec3fdb3108cbd0bd960c9d97ea866c76))
+* show queue total duration in footer, update uptime duration format ([b139516](https://github.com/mariusbegby/cadence-discord-bot/commit/b1395164ea0d4117ecf6ae5f09a4eeecb25c3d86))
+
+
+### Minor changes and bug fixes
+
+* remove unnecessary async/await ([7dc7b4f](https://github.com/mariusbegby/cadence-discord-bot/commit/7dc7b4ff7e80df4c1979fb1e95ad511ce3bea831))
+
 ## [5.3.8](https://github.com/mariusbegby/cadence-discord-bot/compare/v5.3.7...v5.3.8) (2023-09-14)
 
 
