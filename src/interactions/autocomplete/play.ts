@@ -45,8 +45,12 @@ class PlayAutocomplete extends BaseAutocompleteInteraction {
 
     private async getAutocompleteChoices(query: string): Promise<ApplicationCommandOptionChoiceData<string>[]> {
         const player: Player = useMainPlayer()!;
-        const searchResults: SearchResult = await player.search(query);
-        return searchResults.tracks.slice(0, 5).map((track) => ({
+        const [defaultSearchResults, youtubeSearchResults] = await Promise.all([
+            player.search(query),
+            player.search(query, {searchEngine: QueryType.YOUTUBE})
+        ]);
+        const mergedTracks = [...defaultSearchResults.tracks.slice(0,3), ...youtubeSearchResults.tracks.slice(0,3)];
+        return mergedTracks.slice(0, 6).map((track) => ({
             name: getTrackName(track),
             value: track.url
         }));
