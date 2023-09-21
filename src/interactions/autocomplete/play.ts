@@ -1,4 +1,4 @@
-import { Player, QueryType, useMainPlayer } from 'discord-player';
+import { Player, QueryType, SearchResult, useMainPlayer } from "discord-player";
 import { ApplicationCommandOptionChoiceData } from 'discord.js';
 import { BaseAutocompleteInteraction } from '../../classes/interactions';
 import { getTrackName, isQueryTooShort, shouldUseLastQuery } from '../../common/autocompleteUtils';
